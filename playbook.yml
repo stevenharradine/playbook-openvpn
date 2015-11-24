@@ -3,6 +3,8 @@
   hosts: localhost
   sudo: true
   remote_user: douglas
+  vars:
+    project: openvpn
   roles:
     - role: stevenharradine.hostname
     - role: stevenharradine.openvpn
