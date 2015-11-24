@@ -1,1 +1,2 @@
+[all:vars]
 environment_tier=development
