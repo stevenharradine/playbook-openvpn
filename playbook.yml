@@ -1,5 +1,7 @@
 ---
 - connection: local
   hosts: localhost
+  sudo: true
+  remote_user: douglas
   roles:
     - role: stevenharradine.openvpn
