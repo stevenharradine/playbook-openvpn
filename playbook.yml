@@ -4,4 +4,6 @@
   sudo: true
   remote_user: douglas
   roles:
+    - role: stevenharradine.hostname
+      hostname: openvpn
     - role: stevenharradine.openvpn
