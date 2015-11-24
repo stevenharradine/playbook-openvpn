@@ -6,5 +6,7 @@
   vars:
     project: openvpn
   roles:
+    - role: stevenharradine.static-ip
+      static_ip_address: "192.168.1.{% if environment_tier=='development' %}99{% else if environment_tier=='production' %}200{% endif %}"
     - role: stevenharradine.hostname
     - role: stevenharradine.openvpn
