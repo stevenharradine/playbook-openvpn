@@ -3,6 +3,7 @@
   hosts: localhost
   sudo: true
   remote_user: douglas
+  include_vars: vault.yml
   vars:
     project: openvpn
   roles:
@@ -10,50 +11,6 @@
       static_ip_address: "192.168.1.{% if environment_tier=='development' %}90{% elif environment_tier=='production' %}200{% endif %}"
     - role: stevenharradine.hostname
     - role: stevenharradine.openvpn
-      openvpn_certificate_authority: |
-        -----BEGIN CERTIFICATE-----
-        -----END CERTIFICATE-----
-      openvpn_dh_parameters: |
-        -----BEGIN DH PARAMETERS-----
-        -----END DH PARAMETERS-----
-      openvpn_server_certificate: |
-        Certificate:
-            Data:
-                Version: 3 (0x2)
-                Serial Number: 1 (0x1)
-            Signature Algorithm: sha256WithRSAEncryption
-                Issuer: C=US, ST=CA, L=Eureka, O=GlobalDynamics, OU=Section 5, CN=GlobalDynamics CA/name=server/emailAddress=douglas.fargo@globaldynamics.com
-                Validity
-                    Not Before: Jul  2 15:34:57 2015 GMT
-                    Not After : Jun 29 15:34:57 2025 GMT
-                Subject: C=US, ST=CA, L=Eureka, O=GlobalDynamics, OU=Section 5, CN=server/name=server/emailAddress=douglas.fargo@globaldynamics.com
-                Subject Public Key Info:
-                    Public Key Algorithm: rsaEncryption
-                        Public-Key: (2048 bit)
-                        Modulus:
-                X509v3 extensions:
-                    X509v3 Basic Constraints: 
-                        CA:FALSE
-                    Netscape Cert Type: 
-                        SSL Server
-                    Netscape Comment: 
-                        Easy-RSA Generated Server Certificate
-                    X509v3 Subject Key Identifier: 
-                    X509v3 Authority Key Identifier: 
-                    X509v3 Extended Key Usage: 
-                        TLS Web Server Authentication
-                    X509v3 Key Usage: 
-                        Digital Signature, Key Encipherment
-                    X509v3 Subject Alternative Name: 
-                        DNS:server
-            Signature Algorithm: sha256WithRSAEncryption
-        -----BEGIN CERTIFICATE-----
-        -----END CERTIFICATE-----
-      openvpn_server_private_key: |
-        -----BEGIN PRIVATE KEY-----
-        -----END PRIVATE KEY-----
-      openvpn_ifconfig_pool_persist:
-        - { client_name: "client1", ip: "10.8.0.4" }
   tasks:
     - name: enable pseudo-forge
       lineinfile:
