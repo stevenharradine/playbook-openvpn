@@ -3,7 +3,8 @@
   hosts: localhost
   sudo: true
   remote_user: douglas
-  include_vars: vault.yml
+  var_files:
+    - vault.yml
   vars:
     project: openvpn
   roles:
