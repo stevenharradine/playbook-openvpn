@@ -8,15 +8,9 @@
   vars:
     project: openvpn
   roles:
+    - role: stevenharradine.pseudo-forge
     - role: stevenharradine.static-ip
       static_ip_address: "192.168.1.{% if environment_tier=='development' %}90{% elif environment_tier=='production' %}200{% endif %}"
     - role: stevenharradine.hostname
     - role: stevenharradine.openvpn
       openvpn_firewall_allow_ssh: yes
-  tasks:
-    - name: enable pseudo-forge
-      lineinfile:
-        dest: /home/douglas/.bashrc
-        state: present
-        line: "alias reforge='cd /home/douglas/playbook-{{ project }}/ && git pull && sudo ansible-galaxy install -r dependencies.yml --force && ansible-playbook playbook.yml -i hosts/{{ environment_tier }}'"
-        insertafter: EOF
