@@ -13,4 +13,5 @@
       static_ip_address: "192.168.1.{% if environment_tier=='development' %}90{% elif environment_tier=='production' %}200{% endif %}"
     - role: stevenharradine.hostname
     - role: stevenharradine.openvpn
+      openvpn_server: yes
       openvpn_server_firewall_allow_ssh: yes
