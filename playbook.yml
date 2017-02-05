@@ -8,7 +8,6 @@
   vars:
     project: openvpn
   roles:
-    - role: stevenharradine.pseudo-forge
     - role: stevenharradine.static-ip
       static_ip_address: "192.168.2.{% if environment_tier=='development' %}90{% elif environment_tier=='production' %}200{% endif %}"
     - role: stevenharradine.hostname
